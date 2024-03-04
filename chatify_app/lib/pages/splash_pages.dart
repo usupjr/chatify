@@ -9,10 +9,12 @@ import 'package:get_it/get_it.dart';
 //services
 import  '../services/navigation_service.dart';
 import '../services//media_service.dart';
+import '../services/cloud_storage_service.dart';
 
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
+  
 
   const SplashPage({required Key key, required this.onInitializationComplete})
       : super(key: key);
@@ -38,6 +40,7 @@ class _SplashPageState extends State<SplashPage> {
     
     // ignore: deprecated_member_use
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Chatify',
       theme: ThemeData(
         backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
@@ -69,16 +72,23 @@ class _SplashPageState extends State<SplashPage> {
       // Handle the error appropriately, e.g., show a dialog or fallback mechanism
     }
   }
-     
-       
-  }
-
+  
   void _registerServices() {
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
     );
+    GetIt.instance.registerSingleton<MediaService>(
+      MediaService(),
+      );
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
+      );
     
   }
+     
+       
+  }
+
   
 
 
